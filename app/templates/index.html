@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SWE 2026 - Student MVP Seed Template</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Core Design System -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <!-- Background Decorative Orbs -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="main-header">
+      <div class="brand">
+        <span class="badge">SWE-2026</span>
+        <h1>Software Engineering <span>MVP Template</span></h1>
+      </div>
+      <div class="system-status">
+        <span class="status-indicator online"></span>
+        <span class="status-text">Production Seed Active</span>
+      </div>
+    </header>
+
+    <!-- Info Grid -->
+    <section class="info-grid">
+      <div class="info-card">
+        <div class="info-icon purple-glow"><i class="fa-solid fa-layer-group"></i></div>
+        <div class="info-content">
+          <h3>Architecture</h3>
+          <p>C4 Model Level 1 & 2 Prepared</p>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon cyan-glow"><i class="fa-solid fa-shield-halved"></i></div>
+        <div class="info-content">
+          <h3>Security</h3>
+          <p>Prepared Statements Secured</p>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon emerald-glow"><i class="fa-solid fa-cubes"></i></div>
+        <div class="info-content">
+          <h3>DevOps Setup</h3>
+          <p>Multi-Stage Dockerized</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Section -->
+    <main class="main-content">
+      <!-- Task Creation Form Card -->
+      <section class="panel-card form-panel">
+        <div class="panel-header">
+          <h2><i class="fa-solid fa-plus-circle"></i> Create New MVP Entry</h2>
+          <p>Interact with the database. Every operation uses securely bound SQL parameters.</p>
+        </div>
+        
+        <form id="taskForm" class="task-form">
+          <div class="form-group">
+            <label for="title">Entry Title</label>
+            <input type="text" id="title" placeholder="e.g. Implement OAuth logic" required autocomplete="off">
+          </div>
+          
+          <div class="form-group">
+            <label for="description">Detailed Description</label>
+            <textarea id="description" rows="4" placeholder="Describe the feature scope, architectural considerations, and tests..."></textarea>
+          </div>
+          
+          <button type="submit" class="btn btn-primary btn-glowing">
+            <span>Add to Database</span>
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </form>
+      </section>
+
+      <!-- Task Lists Card -->
+      <section class="panel-card list-panel">
+        <div class="panel-header">
+          <div class="panel-title-group">
+            <h2><i class="fa-solid fa-database"></i> Live Database Entries</h2>
+            <p>Direct live feedback from Flask API</p>
+          </div>
+          <div class="task-count" id="taskCounter">0 Entries</div>
+        </div>
+
+        <div class="task-list-wrapper">
+          <!-- Loading State -->
+          <div id="loadingState" class="state-container">
+            <div class="spinner"></div>
+            <p>Querying database tables...</p>
+          </div>
+
+          <!-- Empty State -->
+          <div id="emptyState" class="state-container hidden">
+            <div class="empty-icon"><i class="fa-regular fa-folder-open"></i></div>
+            <h3>No entries found in database</h3>
+            <p>Add a new entry on the left to test the end-to-end database connectivity and Docker flow.</p>
+          </div>
+
+          <!-- Dynamic Tasks List -->
+          <ul id="taskList" class="task-list hidden">
+            <!-- Dynamic elements will be inserted here -->
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+      <div class="footer-links">
+        <a href="/docs/c4_level1_system_context.svg" target="_blank"><i class="fa-solid fa-diagram-project"></i> System Context (L1)</a>
+        <a href="/docs/c4_level2_container.svg" target="_blank"><i class="fa-solid fa-network-wired"></i> Container Diagram (L2)</a>
+        <a href="/health" target="_blank"><i class="fa-solid fa-heartbeat"></i> Health API</a>
+      </div>
+      <p class="copyright">&copy; 2026 Software Engineering Course Group. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <!-- Client-side script -->
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
