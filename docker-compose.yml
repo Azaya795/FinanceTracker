@@ -1,0 +1,44 @@
+services:
+  # Database Service (PostgreSQL)
+  db:
+    image: postgres:15-alpine
+    container_name: swe_db
+    restart: always
+    environment:
+      POSTGRES_DB: ${DB_NAME:-swe_project_db}
+      POSTGRES_USER: ${DB_USER:-swe_student}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-securepassword123}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # Web Application Service (Flask)
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: swe_web
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=${DB_NAME:-swe_project_db}
+      - DB_USER=${DB_USER:-swe_student}
+      - DB_PASSWORD=${DB_PASSWORD:-securepassword123}
+      - FLASK_ENV=development
+      - FLASK_DEBUG=1
+      - SECRET_KEY=${SECRET_KEY:-super-secret-dev-key-change-in-production}
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:

@@ -1,0 +1,21 @@
+stages:
+  - build
+  - test
+ 
+# This job ensures the Docker image builds correctly
+build_image:
+  stage: build
+  image: docker:24.0.5
+  services:
+    - docker:24.0.5-dind
+  script:
+    - docker build -t my-app-test .
+    - echo "Build successful!"
+ 
+# Placeholder for Sprint 2
+run_tests:
+  stage: test
+  image: python:3.11
+  script:
+    - echo "Unit tests will be integrated here in Sprint 2."
+  allow_failure: true
